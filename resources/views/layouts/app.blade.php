@@ -72,12 +72,31 @@
                                 </div>
                             </li>
                         @endguest
+
+                        <li class="nav-item">
+                            <a href="{{ action('ShoppingCartController@cart') }}" class="btn btn-primary">
+                                Cart <span class="badge badge-light">{{ count(session('cart')) }}</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
+
         <main class="py-4">
+            <div class="container">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+        
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+            </div>
+            
             @yield('content')
         </main>
     </div>
