@@ -2,33 +2,24 @@
 
 @section('content')
     <div class="container">
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
-
-        <a href="{{ action('CategoryController@create') }}" class="btn btn-primary">Add</a>
-    </div>
-    <div class="container">
         <div id="panel" class="panel">
-            @foreach ($categories->chunk(3) as $items)
-                <div class="row">
-                    @foreach($items as $category)
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h3 class="card-title">{{ $category->name }}</h3>
-                                </div>
-                            </div>
-                        </div>
+            <table class="table table-striped table-bordered mt-2">
+                <thead class="thead-dark">
+                    <tr>   
+                        <th scope="col">Name</th>
+                        <th scope="col">Show</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($categories as $category)
+                        <tr>
+                            <td class="w-75"> <h3>{{ $category->name }}</h3> </td>
+                            <td class="text-center"> <a href="{{ $category->showProducts() }}" class="btn btn-primary">Show all items</a> </td>
+                        </tr>
                     @endforeach
-                </div>
-            @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
     <div class="container">

@@ -10,4 +10,8 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+    public function showProduct(){
+        return action('ProductController@show', $this);
+    }
 }

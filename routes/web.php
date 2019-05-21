@@ -18,6 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/products/filter/{category_id}', 'ProductController@getItemsByCategory')->name('filter');
+
+Route::get('/cart', 'ShoppingCartController@cart')->name('cart');
+Route::get('/addToCart/{productId}', 'ShoppingCartController@addItem')->name('addToCart');
+Route::get('/removeFromCart/{productId}', 'ShoppingCartController@removeItem')->name('removeFromCart');
+Route::get('/order', 'ShoppingCartController@order')->name('order');
 
 Route::resources([
     'categories' => 'CategoryController',

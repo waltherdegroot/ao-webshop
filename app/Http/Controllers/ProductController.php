@@ -15,7 +15,15 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate(12);
+        
+        return View('products.index', ['products' => $products]);
+    }
 
+    public function getItemsByCategory($categoryId){
+        $products = Product::whereHas('categories', function($q) use ($categoryId){
+            $q->where('category_id', $categoryId);
+        })->paginate(12);  
+        
         return View('products.index', ['products' => $products]);
     }
 
@@ -26,7 +34,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**
@@ -48,7 +56,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        dd($product);
+        return View('products.show', ['product' => $product]);
     }
 
     /**
