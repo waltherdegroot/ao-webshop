@@ -65,7 +65,11 @@
                     </div>
                 </div>
             </div>
-            <a href="{{ action('ShoppingCartController@order') }}" class="btn btn-primary float-right mt-3">ORDER</a>
+            @guest
+                <a class="btn btn-primary float-right mt-3 disabled">Login to order</a>
+            @else
+                <a href="{{ action('OrderController@order') }}" class="btn btn-primary float-right mt-3">ORDER</a>
+            @endguest
         </div>
     </div>
 @endsection
